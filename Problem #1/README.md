@@ -73,6 +73,6 @@
 
 command ที่ใช้ในการรันโปรแกรม
 
-      ```zsh
-     py seven_segment.py
-     ```
+```zsh
+py seven_segment.py
+```
