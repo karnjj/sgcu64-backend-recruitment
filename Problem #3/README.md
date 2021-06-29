@@ -120,14 +120,42 @@ HR
       - Status Code: 400 Bad Request
 
 #### ทำแบบ Swagger (Spec ที่แสดงอาจไม่ตรงกับ UI ยกมาเพื่อให้เห็นภาพเฉย ๆ)
-![image](https://user-images.githubusercontent.com/24814968/121923165-db069f00-cd64-11eb-9098-539c2e1734a9.png)  
+
+![image](https://user-images.githubusercontent.com/24814968/121923165-db069f00-cd64-11eb-9098-539c2e1734a9.png)
 
 OpenAPI Spec
 
-![image](https://user-images.githubusercontent.com/24814968/121923206-e5289d80-cd64-11eb-950d-8391bcdc27e0.png)  
+![image](https://user-images.githubusercontent.com/24814968/121923206-e5289d80-cd64-11eb-950d-8391bcdc27e0.png)
 
 Swagger UI
 
 # Applicant Section
 
 ตั้งแต่ส่วนนี้ลงไป เป็นส่วนที่ผู้สมัครสามารถแก้ไขได้ตามอัธยาศัย ซึ่งอาจจะเป็นข้อสันนิษฐานหรือไอเดียเพิ่มเติมก็ได้
+
+เข้าworkspaceด้วยคำสั้ง
+
+```zsh
+cd sgcu-api
+```
+
+ทำการติดตั้ง node modules ด้วยคำสั่ง
+
+```zsh
+yarn
+```
+
+ทำการรันด้วยคำสั่ง
+
+```zsh
+# development
+yarn start
+
+# watch mode
+yarn start:dev
+
+# production mode
+yarn start:prod
+```
+
+สามารถดูหน้า API ใน [http://127.0.0.1:8000/api](http://127.0.0.1:8000/api)
