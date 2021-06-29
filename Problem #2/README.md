@@ -104,3 +104,7 @@ command ที่ใช้ในการรันโปรแกรม
 ```zsh
 py chula_chana.py
 ```
+
+จัดเก็บข้อมูลคน check in ใน list place_user ในรูปแบบ {place: number, phone: number}เพื่อให้ง่ายต่อการเพิ่มการเก็บข้อมูลต่อ
+
+- เช่น ถ้าเราต้องการเก็บข้อมูลuserเพิ่ม เราสามารถเพิ่ม list users ในการเก็บข้อมูลuser และเก็บข้อมูลcheck in ในรูปแบบ {place: number, userId: number} เพื่อที่จะสามารถอิงข้อมูลuserผ่าน userId ได้เลย
