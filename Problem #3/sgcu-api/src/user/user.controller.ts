@@ -20,7 +20,6 @@ import {
   ApiQuery,
   ApiTags,
 } from '@nestjs/swagger';
-import { Role } from 'src/shared/constants';
 import { NewUserDTO, UserDTO } from './dto/user.dto';
 import { UserService } from './user.service';
 
@@ -37,8 +36,8 @@ export class UserController {
     type: UserDTO,
   })
   @ApiBadRequestResponse({ description: 'Client send wrong data' })
-  createUser(@Body() newUser: NewUserDTO): UserDTO {
-    return this.userService.create(newUser);
+  async createUser(@Body() newUser: NewUserDTO) {
+    return await this.userService.create(newUser);
   }
 
   @Get()
@@ -85,8 +84,11 @@ export class UserController {
   @ApiOkResponse({ description: 'Update user complete', type: UserDTO })
   @ApiNotFoundResponse({ description: 'This user id not found' })
   @ApiBadRequestResponse({ description: 'Client send wrong data' })
-  updateUserById(@Param('userId') userId: string, @Body() newUser: NewUserDTO) {
-    this.userService.updateUserByUserId(userId, newUser);
+  async updateUserById(
+    @Param('userId') userId: string,
+    @Body() newUser: NewUserDTO,
+  ) {
+    return await this.userService.updateUserByUserId(userId, newUser);
   }
 
   @Delete('/:userId')
@@ -98,7 +100,7 @@ export class UserController {
   @ApiOperation({ summary: 'Delete user by userId' })
   @ApiOkResponse({ description: 'Delete user complete', type: UserDTO })
   @ApiNotFoundResponse({ description: 'This user id not found' })
-  deleteUserById(@Param('userId') userId: string) {
-    this.userService.deleteUserByUserId(userId);
+  async deleteUserById(@Param('userId') userId: string) {
+    return await this.userService.deleteUserByUserId(userId);
   }
 }
