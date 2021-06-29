@@ -1,6 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Role } from 'src/shared/constants';
-import { v4 as uuidv4 } from 'uuid';
+import { customAlphabet } from 'nanoid';
+const alphabet = '0123456789';
+const nanoid = customAlphabet(alphabet, 8);
 
 export class UserBase {
   @ApiProperty({ description: 'first name of user' })
@@ -18,7 +20,7 @@ export class UserBase {
 export class UserDTO extends UserBase {
   constructor() {
     super();
-    this.id = uuidv4();
+    this.id = nanoid();
   }
   @ApiProperty({ description: 'id of user' })
   id: string;
