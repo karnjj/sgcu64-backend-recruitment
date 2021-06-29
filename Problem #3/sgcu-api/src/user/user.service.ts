@@ -3,6 +3,7 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
+import * as bcrypt from 'bcrypt';
 import { Role } from 'src/shared/constants';
 import { find } from 'src/shared/utils';
 import { NewUserDTO, UserDTO } from './dto/user.dto';
@@ -12,12 +13,14 @@ export class UserService {
   private userDB: UserDTO[] = [];
   constructor() {}
 
-  create(newUser: NewUserDTO) {
+  async create(newUser: NewUserDTO) {
     const user = new UserDTO();
     try {
+      const salt = await bcrypt.genSalt();
+      const hash = await bcrypt.hash(newUser.password, salt);
       user.firstName = newUser.firstName;
       user.lastName = newUser.lastName;
-      user.password = newUser.password;
+      user.password = hash;
       user.salary = newUser.salary;
       user.role = newUser.role;
       this.userDB.push(user);
@@ -44,9 +47,11 @@ export class UserService {
     if (idx === -1) throw new NotFoundException();
     const user = this.userDB[idx];
     try {
+      const salt = await bcrypt.genSalt();
+      const hash = await bcrypt.hash(newUser.password, salt);
       user.firstName = newUser.firstName;
       user.lastName = newUser.lastName;
-      user.password = newUser.password;
+      user.password = hash;
       user.role = newUser.role;
       user.salary = newUser.salary;
       this.userDB[idx] = user;
